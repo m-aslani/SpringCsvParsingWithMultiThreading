@@ -23,7 +23,7 @@ public class Account {
 
     @NotNull(message = "Account Number must NOT be NULL!")
     @Size(min = 22, max = 22 , message = "Account Number must include 22 digits")
-    private String accountNumber;
+    private String accountNumber; //encrypted
 
     @NotNull(message = "Account Type must NOT be NULL!")
 //    @Pattern(regexp = "1|2|3" , message = "Account type must be 1, 2 or 3.")
@@ -39,7 +39,7 @@ public class Account {
     private String accountOpenDate;
 
     @NotNull(message = "Account Balance must NOT be NULL!")
-    private double accountBalance;
+    private double accountBalance; //encrypted
 
     public boolean isBalanceValid(){
         return this.accountBalance >= this.accountLimit;
