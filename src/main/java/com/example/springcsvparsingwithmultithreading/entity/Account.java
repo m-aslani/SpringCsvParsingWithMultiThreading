@@ -1,9 +1,6 @@
 package com.example.springcsvparsingwithmultithreading.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -15,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "My-Account")
+@Table(name = "My-Account3")
 public class Account {
 
     @Id
@@ -40,6 +37,14 @@ public class Account {
 
     @NotNull(message = "Account Balance must NOT be NULL!")
     private double accountBalance; //encrypted
+
+////    @NotNull(message = "Account Number must NOT be NULL!")
+//    @Column(length = 512)
+//    private String encryptedAccountNumber;
+//
+////    @NotNull(message = "Account Balance must NOT be NULL!")
+//    @Column(length = 512)
+//    private String encryptedAccountBalance;
 
     public boolean isBalanceValid(){
         return this.accountBalance >= this.accountLimit;

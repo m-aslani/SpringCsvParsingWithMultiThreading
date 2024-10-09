@@ -61,6 +61,8 @@ public class FileReaderService {
             throw new RuntimeException(e);
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -73,7 +75,7 @@ public class FileReaderService {
                 ValidationResult validationResult = validationService.validateCustomer(customer);
                 if (validationResult.isValid()) {
                     customerRepository.save(customer);
-                    System.out.println("in cus " + customer.getCustomerId());
+
                 } else {
                     errorLoggingService.writeErrorLog("Customer", customer.getRecordNumber(), validationResult.getMessage());
                 }
@@ -81,6 +83,8 @@ public class FileReaderService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (CsvValidationException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
