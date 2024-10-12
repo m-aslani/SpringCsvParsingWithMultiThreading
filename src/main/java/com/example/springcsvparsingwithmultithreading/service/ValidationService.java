@@ -29,6 +29,7 @@ public class ValidationService {
 
         Set<ConstraintViolation<Account>> violations = validator.validate(account);
 
+
         if (!violations.isEmpty()) {
             for (ConstraintViolation<Account> violation : violations) {
                 errorMessage += violation.getMessage() + ", ";
@@ -50,6 +51,8 @@ public class ValidationService {
         validationResult.setValid(valid);
         validationResult.setMessage(errorMessage);
 
+
+
         return validationResult;
     }
 
@@ -57,8 +60,9 @@ public class ValidationService {
         ValidationResult validationResult = new ValidationResult();
         String errorMessage = "";
         boolean valid = true;
+
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
-//        System.out.println("5555555555555555555555555555555");
+
         if (!violations.isEmpty()) {
             for (ConstraintViolation<Customer> violation : violations) {
                 errorMessage += violation.getMessage() + ", ";
@@ -66,18 +70,14 @@ public class ValidationService {
             valid = false;
         }
 
-//        System.out.println("33333333333333333333333333333");
 
         if (!customer.isBirthDateValid()) {
             errorMessage += "Customer birth date is not valid";
             valid = false;
         }
 
-//        System.out.println("66666666666666666666666666666666666");
-
         validationResult.setValid(valid);
         validationResult.setMessage(errorMessage);
-//        System.out.println("0000000000000000000000000");
         return validationResult;
     }
 }

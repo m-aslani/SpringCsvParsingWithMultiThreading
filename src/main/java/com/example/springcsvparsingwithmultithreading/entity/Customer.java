@@ -1,6 +1,7 @@
 package com.example.springcsvparsingwithmultithreading.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "My-Customer3")
+@Table(name = "Customer")
 public class Customer {
 
     @Id
@@ -23,23 +24,23 @@ public class Customer {
     @NotNull(message = "Customer ID must NOT be NULL!")
     private int customerId;
 
-    @NotNull(message = "Customer name must NOT be NULL!")
+    @NotBlank(message = "Customer name must NOT be NULL!")
     private String customerName; //encrypted
 
-    @NotNull(message = "Customer surName must NOT be NULL!")
+    @NotBlank(message = "Customer surName must NOT be NULL!")
     private String customerSurname; //encrypted
 
-    @NotNull(message = "Customer Address must NOT be NULL!")
+    @NotBlank(message = "Customer Address must NOT be NULL!")
     private String customerAddress;
 
     @NotNull(message = "Customer ZIP code must NOT be NULL!")
     private Long customerZipCode;
 
-    @NotNull(message = "Customer nation ID must NOT be NULL!")
+    @NotBlank(message = "Customer nation ID must NOT be NULL!")
     @Size(min = 10 , max = 10 , message = "Customer National ID must include 10 digits.")
     private String customerNationalId; //encrypted
 
-    @NotNull(message = "Customer Birth date must NOT be NULL!")
+    @NotBlank(message = "Customer Birth date must NOT be NULL!")
     private String customerBirthDate;
 
 ///   @NotNull(message = "Customer Name must NOT be NULL!")
@@ -53,6 +54,9 @@ public class Customer {
 //    private String encryptedCustomerNationalId;
 
     public boolean isBirthDateValid(){
+        if(this.customerBirthDate == null || this.customerBirthDate.isEmpty() || this.customerBirthDate.equals("")){
+            return false;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         return LocalDate.parse(this.customerBirthDate , formatter).isAfter(LocalDate.of(1995,1,1));
     }

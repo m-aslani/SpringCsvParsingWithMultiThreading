@@ -1,9 +1,7 @@
 package com.example.springcsvparsingwithmultithreading.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "My-Account3")
+@Table(name = "Account")
 public class Account {
 
     @Id
     private Long recordNumber;
 
-    @NotNull(message = "Account Number must NOT be NULL!")
+    @NotBlank(message = "Account Number must NOT be NULL!")
     @Size(min = 22, max = 22 , message = "Account Number must include 22 digits")
     private String accountNumber; //encrypted
 
@@ -30,12 +28,14 @@ public class Account {
     private int customerId;
 
     @NotNull(message = "Account Limit must NOT be NULL!")
+    @Min(value = 1 , message = "Account Limit must NOT be NULL!")
     private double accountLimit;
 
-    @NotNull(message = "Account open data must NOT be NULL!")
+    @NotBlank(message = "Account open data must NOT be NULL!")
     private String accountOpenDate;
 
     @NotNull(message = "Account Balance must NOT be NULL!")
+    @Min(value = 1 , message = "Account Balance must NOT be NULL!")
     private double accountBalance; //encrypted
 
 ////    @NotNull(message = "Account Number must NOT be NULL!")

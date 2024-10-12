@@ -24,8 +24,10 @@ public class MapperService {
 //        account.setEncryptedAccountNumber(encryptedService.encryptString(line[1], secretKey));
         account.setAccountType(Integer.parseInt(line[2]));
         account.setCustomerId(Integer.parseInt(line[3]));
+        if(line[4].contains(",")) line[4] = line[4].replace(",","");
         account.setAccountLimit(line[4].isEmpty() ? 0 : Double.parseDouble(line[4].replace("$", "")));
         account.setAccountOpenDate(line[5]);
+        if(line[6].contains(",")) line[6] = line[6].replace(",","");
         account.setAccountBalance(line[6].isEmpty() ? 0 : Double.parseDouble(line[6].replace("$", "")));
 //        account.setEncryptedAccountBalance(encryptedService.encryptString(line[6] , secretKey));
 
